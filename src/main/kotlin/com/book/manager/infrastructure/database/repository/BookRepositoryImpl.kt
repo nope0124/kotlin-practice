@@ -19,7 +19,8 @@ import java.time.LocalDate
 @Suppress("SpringJavaInjectionPointsAutowiringInspection")
 @Repository
 class BookRepositoryImpl(
-    private val bookWithRentalMapper: BookWithRentalMapper
+    private val bookWithRentalMapper: BookWithRentalMapper,
+    private val bookMapper: BookMapper
 ) : BookRepository {
     override fun findAllWithRental(): List<BookWithRental> {
         return bookWithRentalMapper.select().map { toModel(it) }
@@ -27,6 +28,10 @@ class BookRepositoryImpl(
 
     override fun findWithRental(id: Long): BookWithRental? {
         return bookWithRentalMapper.selectByPrimaryKey(id)?.let { toModel(it) }
+    }
+
+    override fun register(book: Book) {
+        bookMapper.insert(toRecord(book))
     }
 
     private fun toModel(record: BookWithRentalRecord): BookWithRental {
@@ -46,4 +51,10 @@ class BookRepositoryImpl(
         }
         return BookWithRental(book, rental)
     }
+
+    private fun toRecord(model: Book): BookRecord {
+        return BookRecord(model.id, model.title, model.author, model.releaseDate)
+    }
+
+
 }
