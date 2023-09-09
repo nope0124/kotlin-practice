@@ -34,6 +34,10 @@ class BookRepositoryImpl(
         bookMapper.insert(toRecord(book))
     }
 
+    override fun update(id: Long, title: String?, author: String?, releaseDate: LocalDate?) {
+        bookMapper.updateByPrimaryKeySelective(BookRecord(id, title, author, releaseDate))
+    }
+
     private fun toModel(record: BookWithRentalRecord): BookWithRental {
         val book = Book(
             record.id!!,
