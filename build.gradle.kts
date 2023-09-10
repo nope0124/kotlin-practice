@@ -25,7 +25,7 @@ dependencies {
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4")
     implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.2.1") // 追加
     implementation("mysql:mysql-connector-java:8.0.23") // 追加
-//    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 //    implementation("org.springframework.session:spring-session-data-redis")
 //    implementation("redis.clients:jedis")
 //    implementation("org.springframework.boot:spring-boot-starter-aop")
