@@ -4,7 +4,10 @@ import com.book.manager.domain.enum.RoleType
 import com.book.manager.domain.model.Book
 import com.book.manager.domain.model.BookWithRental
 import com.book.manager.domain.model.Rental
+import com.book.manager.domain.model.User
 import com.book.manager.domain.repository.BookRepository
+import com.book.manager.domain.repository.RentalRepository
+import com.book.manager.domain.repository.UserRepository
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
@@ -33,7 +36,7 @@ internal class RentalServiceTest {
         val bookWithRental = BookWithRental(book, rental)
 
         whenever(userRepository.find(any() as Long)).thenReturn(user)
-        whenever(bookRepository.findWithRental(any())).thenReturn(bookWithRental)
+        whenever(bookRepository.findWithRental(any() as Long)).thenReturn(bookWithRental)
 
         rentalService.endRental(bookId, userId)
 
